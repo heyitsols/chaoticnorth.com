@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e9e7df">
+  <meta name="description" content="Chaotic North tests how technology, people and processes hold up under pressure. Operational resilience, continuity, recovery and crisis management.">
+  <title>Chaotic North — Operational resilience</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23202220'/%3E%3Cpath d='M13 45V19h7l17 18V19h7v26h-7L20 27v18z' fill='%23e9e7df'/%3E%3Cpath d='M47 19h6v26h-6z' fill='%23d84a30'/%3E%3C/svg%3E">
+  <style>
+    :root { color-scheme: light; --paper:#e9e7df; --ink:#202220; --muted:#555850; --rule:#a9aaa1; --accent:#c9462b; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial, Helvetica, sans-serif; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; }
+    a:focus-visible { outline:2px solid var(--accent); outline-offset:5px; }
+    .wrap { width:min(100% - 80px, 1460px); margin-inline:auto; }
+    .site-header { border-bottom:1px solid var(--ink); }
+    .header-inner { display:flex; min-height:94px; align-items:center; justify-content:space-between; gap:30px; }
+    .brand { font-size:1.65rem; font-weight:800; letter-spacing:-.085em; line-height:1; text-decoration:none; white-space:nowrap; }
+    .brand span { color:var(--accent); }
+    .header-right { display:flex; align-items:center; gap:clamp(28px,5vw,80px); }
+    .descriptor, .eyebrow, .minor, .section-label, .service-number, .footnote { font-family:"Courier New", Courier, monospace; font-size:.78rem; line-height:1.5; letter-spacing:.045em; text-transform:uppercase; }
+    .descriptor { max-width:155px; margin:0; }
+    .header-link { display:inline-flex; align-items:center; gap:28px; background:var(--ink); color:var(--paper); font-size:.9rem; font-weight:700; text-decoration:none; padding:17px 19px 17px 23px; border-left:5px solid var(--accent); white-space:nowrap; transition:background .18s ease, color .18s ease; }
+    .header-link:hover { background:var(--accent); color:#fff; }
+    .header-arrow { font-size:1.3rem; font-weight:400; line-height:1; }
+    .mobile-label { display:none; }
+    .text-link:hover { color:var(--accent); border-color:var(--accent); }
+    .hero { padding-top:clamp(46px,7vw,104px); border-bottom:1px solid var(--ink); }
+    .hero-top { display:grid; grid-template-columns:minmax(0,1fr) 220px; align-items:start; gap:30px; }
+    .eyebrow { margin:0; font-weight:700; }
+    .issue { margin:0; text-align:right; color:var(--muted); }
+    h1 { max-width:1240px; margin:clamp(46px,6vw,88px) 0 clamp(55px,7vw,106px); font-size:clamp(4.7rem,11.2vw,11.75rem); font-weight:700; letter-spacing:-.091em; line-height:.87; }
+    h1 .second { display:block; }
+    h1 .punct { color:var(--accent); }
+    .hero-bottom { display:flex; justify-content:flex-end; border-top:1px solid var(--rule); padding:28px 0 46px; }
+    .hero-copy { width:min(100%,520px); margin:0; font-size:clamp(1.2rem,2vw,1.65rem); line-height:1.35; letter-spacing:-.025em; }
+    .intro { display:grid; grid-template-columns:1fr 1fr; gap:8vw; padding-top:clamp(85px,10vw,150px); padding-bottom:clamp(95px,10vw,160px); }
+    .section-label { margin:0; font-weight:700; display:flex; gap:24px; }
+    .section-label::before { content:""; display:block; width:11px; height:11px; background:var(--accent); margin-top:3px; flex:none; }
+    .intro-content { max-width:680px; }
+    h2 { font-family:Georgia, "Times New Roman", serif; font-weight:400; letter-spacing:-.053em; line-height:1.02; }
+    .intro h2 { margin:-11px 0 30px; font-size:clamp(2.6rem,4.2vw,5rem); }
+    .intro p:not(.section-label) { max-width:570px; font-size:1.08rem; line-height:1.6; color:#363832; margin:0; }
+    .services { background:var(--ink); color:var(--paper); }
+    .services-head { display:grid; grid-template-columns:1fr 1fr; gap:8vw; padding-top:62px; padding-bottom:62px; border-bottom:1px solid #72756d; }
+    .services-head .section-label::before { background:var(--accent); }
+    .services-head h2 { margin:-12px 0 0; font-size:clamp(3.4rem,6vw,6.6rem); }
+    .service { display:grid; grid-template-columns:100px minmax(250px,1fr) minmax(300px,.9fr) 42px; gap:34px; align-items:start; padding:37px 0 44px; border-bottom:1px solid #72756d; }
+    .service:last-child { border-bottom:0; }
+    .service-number { color:#bcbeb4; padding-top:8px; }
+    .service h3 { margin:0; max-width:500px; font-size:clamp(1.65rem,2.5vw,2.7rem); line-height:1.08; letter-spacing:-.055em; font-weight:500; }
+    .service p { max-width:420px; margin:3px 0 0; color:#c6c9c0; font-size:1rem; line-height:1.55; }
+    .service-mark { justify-self:end; font-family:Georgia,serif; font-size:2.2rem; line-height:1; color:var(--accent); }
+    .founder, .engagement, .evidence-inner { display:grid; grid-template-columns:1fr 1fr; gap:8vw; }
+    .founder { padding-top:clamp(95px,10vw,155px); padding-bottom:clamp(95px,10vw,155px); }
+    .founder h2, .engagement h2, .evidence h2 { margin:-10px 0 30px; max-width:740px; font-size:clamp(3.1rem,5.2vw,5.8rem); }
+    .founder p:not(.section-label), .engagement p:not(.section-label), .evidence p:not(.section-label) { max-width:580px; font-size:1.1rem; line-height:1.58; margin:0 0 22px; }
+    .founder p.role { font-family:"Courier New",Courier,monospace; font-size:.82rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+    .engagement { border-top:1px solid var(--ink); padding-top:clamp(80px,9vw,135px); padding-bottom:clamp(95px,10vw,150px); }
+    .steps { margin:48px 0 0; padding:0; list-style:none; border-top:1px solid var(--rule); }
+    .steps li { display:grid; grid-template-columns:48px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--rule); font-size:1rem; line-height:1.45; }
+    .steps span { font-family:"Courier New",Courier,monospace; font-size:.78rem; color:var(--accent); padding-top:3px; }
+    .deliverable { margin-top:28px !important; color:var(--muted); }
+    .evidence { background:var(--ink); color:var(--paper); padding-top:clamp(70px,8vw,120px); padding-bottom:clamp(80px,9vw,130px); }
+    .evidence h2 { max-width:600px; }
+    .evidence-note { color:#bfc2b9; }
+    .metrics { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-top:50px; }
+    .metric { border-top:1px solid #74766e; padding-top:23px; }
+    .metric strong { display:block; color:var(--paper); font-size:clamp(2.2rem,3.8vw,4.1rem); font-weight:500; letter-spacing:-.065em; line-height:1.1; }
+    .metric span { display:block; max-width:235px; color:#bfc2b9; font-size:.95rem; line-height:1.45; margin-top:12px; }
+    .contact { border-top:1px solid var(--ink); padding:70px 0 95px; }
+    .contact-head { display:flex; align-items:start; justify-content:space-between; gap:30px; }
+    .contact h2 { font-size:clamp(3.2rem,7vw,8rem); margin:55px 0 50px; max-width:1000px; }
+    .text-link { display:inline-block; border-bottom:2px solid var(--ink); text-decoration:none; font-size:clamp(1.3rem,2.5vw,2.5rem); letter-spacing:-.045em; font-weight:700; padding-bottom:10px; overflow-wrap:anywhere; }
+    .contact .minor { margin:16px 0 0; color:var(--muted); }
+    footer { border-top:1px solid var(--ink); }
+    .footer-inner { display:flex; justify-content:space-between; align-items:center; gap:24px; padding:28px 0 34px; }
+    .footnote { margin:0; color:var(--muted); }
+    @media (max-width:900px) {
+      .wrap { width:min(100% - 44px, 1460px); }
+      .header-inner { min-height:76px; }
+      .descriptor { display:none; }
+      .hero-top { grid-template-columns:1fr auto; }
+      h1 { font-size:clamp(4.5rem,12vw,8rem); }
+      .intro,.founder,.engagement,.evidence-inner,.services-head { gap:5vw; }
+      .service { grid-template-columns:55px 1fr 1fr; gap:20px; }
+      .service-mark { display:none; }
+    }
+    @media (max-width:650px) {
+      .wrap { width:calc(100% - 36px); }
+      .header-inner { min-height:70px; }
+      .brand { font-size:1.42rem; }
+      .header-inner { gap:10px; }
+      .header-link { gap:10px; font-size:.78rem; padding:13px 12px 13px 14px; border-left-width:4px; }
+      .header-arrow { font-size:1.1rem; }
+      .desktop-label { display:none; }
+      .mobile-label { display:inline; }
+      .hero { padding-top:38px; }
+      .issue { font-size:.68rem; }
+      h1 { font-size:clamp(3.72rem,15vw,6.7rem); margin:90px 0 83px; }
+      .intro,.services-head,.founder,.engagement,.evidence-inner { grid-template-columns:1fr; }
+      .hero-bottom { padding-bottom:38px; }
+      .hero-copy { font-size:1.3rem; }
+      .intro { gap:55px; padding-top:100px; padding-bottom:110px; }
+      .intro h2,.founder h2,.engagement h2,.evidence h2 { margin-top:0; }
+      .services-head { padding-top:50px; padding-bottom:50px; gap:42px; }
+      .services-head h2 { margin:0; }
+      .service { grid-template-columns:36px 1fr; gap:14px; padding:30px 0 33px; }
+      .service h3 { font-size:1.8rem; }
+      .service p { grid-column:2; margin:0; }
+      .founder,.engagement,.evidence-inner { gap:48px; }
+      .founder { padding-top:105px; padding-bottom:110px; }
+      .engagement { padding-top:85px; padding-bottom:110px; }
+      .evidence { padding-top:85px; padding-bottom:105px; }
+      .metrics { grid-template-columns:1fr; gap:28px; }
+      .contact { padding:54px 0 85px; }
+      .contact h2 { margin:60px 0 45px; }
+      .footer-inner { align-items:flex-start; flex-direction:column; gap:8px; }
+    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Chaotic North, back to top">chaoticnorth<span>.</span></a>
+      <div class="header-right">
+        <p class="descriptor">Operational excellence microconsultancy</p>
+        <a class="header-link" href="mailto:ols@chaoticnorth.com?subject=Test%20our%20resilience" aria-label="Put it to the test. Email Chaotic North"><span class="desktop-label">Put it to the test</span><span class="mobile-label">Test us</span><span class="header-arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-top">
+        <p class="eyebrow">Operational resilience / Sheffield, UK</p>
+        <p class="issue minor">Technology · people · process</p>
+      </div>
+      <h1 id="hero-title">Embrace<span class="second">the chaos<span class="punct">.</span></span></h1>
+      <div class="hero-bottom">
+        <p class="hero-copy">Systems fail. We find out what happens next, before it happens for real.</p>
+      </div>
+    </section>
+
+    <section class="intro wrap" aria-labelledby="intro-title">
+      <p class="section-label">01 / The work</p>
+      <div class="intro-content">
+        <h2 id="intro-title">Confidence comes from testing.</h2>
+        <p>We simulate failures and disaster scenarios across technology, people and processes. The point is to expose the gaps, understand their impact and make recovery work in practice.</p>
+      </div>
+    </section>
+
+    <section class="services" id="services" aria-labelledby="services-title">
+      <div class="wrap">
+        <div class="services-head">
+          <p class="section-label">02 / What we do</p>
+          <h2 id="services-title">Areas of focus</h2>
+        </div>
+        <div class="service">
+          <span class="service-number">01</span>
+          <h3>Operational resilience</h3>
+          <p>Assess, design and improve the processes that keep critical services running under pressure.</p>
+          <span class="service-mark" aria-hidden="true">↗</span>
+        </div>
+        <div class="service">
+          <span class="service-number">02</span>
+          <h3>Business continuity</h3>
+          <p>Build continuity plans around your organisation's actual risks, dependencies and decisions.</p>
+          <span class="service-mark" aria-hidden="true">↗</span>
+        </div>
+        <div class="service">
+          <span class="service-number">03</span>
+          <h3>Disaster recovery</h3>
+          <p>Plan and test recovery for IT and business operations, so downtime and data loss have limits.</p>
+          <span class="service-mark" aria-hidden="true">↗</span>
+        </div>
+        <div class="service">
+          <span class="service-number">04</span>
+          <h3>Crisis management</h3>
+          <p>Make roles, communications and decisions clear before an incident demands them.</p>
+          <span class="service-mark" aria-hidden="true">↗</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="founder wrap" aria-labelledby="founder-title">
+      <p class="section-label">03 / Who you work with</p>
+      <div>
+        <h2 id="founder-title">Oliver Leaver-Smith.</h2>
+        <p class="role">Founder / Operations &amp; reliability</p>
+        <p>Oliver has led digital operations and reliability teams in high-stakes, regulated environments. His work spans SRE, incident response, operational strategy and the practical decisions that determine whether a service recovers.</p>
+        <p>Chaotic North is a focused, founder-led consultancy. You work directly with the person assessing your risks and running the exercise.</p>
+      </div>
+    </section>
+
+    <section class="engagement wrap" aria-labelledby="engagement-title">
+      <p class="section-label">04 / Where to start</p>
+      <div>
+        <h2 id="engagement-title">Put a critical service to the test.</h2>
+        <p>Start with a resilience exercise built around a failure that matters to your organisation. We examine how the technical response, decision-making and communications work together under pressure.</p>
+        <ol class="steps">
+          <li><span>01</span>Choose the service, failure scenario and people who need to be in the room.</li>
+          <li><span>02</span>Work through the incident together, from the first signal to recovery.</li>
+          <li><span>03</span>Identify the gaps, agree the most useful fixes and plan how to retest them.</li>
+        </ol>
+        <p class="deliverable">The output: a clear record of what happened in the exercise, the dependencies it exposed and a prioritised action plan.</p>
+      </div>
+    </section>
+
+    <section class="evidence" aria-labelledby="evidence-title">
+      <div class="wrap evidence-inner">
+        <p class="section-label">05 / Track record</p>
+        <div>
+          <h2 id="evidence-title">The work has moved the numbers.</h2>
+          <p class="evidence-note">Selected outcomes from Oliver's previous operational leadership roles.</p>
+          <div class="metrics">
+            <div class="metric"><strong>99.85% → 99.999%</strong><span>Availability improved through reliability work.</span></div>
+            <div class="metric"><strong>53%</strong><span>Reduction in mean time to recovery.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="contact-head">
+          <p class="section-label">06 / Get in touch</p>
+          <p class="minor">Have a scenario in mind?</p>
+        </div>
+        <h2 id="contact-title">Let's see what holds.</h2>
+        <a class="text-link" href="mailto:ols@chaoticnorth.com?subject=Chaotic%20North%20enquiry">ols@chaoticnorth.com ↗</a>
+        <p class="minor">Tell us what you're trying to protect.</p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#top" aria-label="Chaotic North, back to top">chaoticnorth<span>.</span></a>
+      <p class="footnote">© 2026 Chaotic North</p>
+    </div>
+  </footer>
+</body>
+</html>
